@@ -20,9 +20,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 mongoose.Promise = global.Promise;
-
-mongoose.Promise = global.Promise;
-
 // Connecting to the database
 mongoose
   .connect(dbConfig.url, {
@@ -57,7 +54,9 @@ let verifyToken = (req, res, next) => {
     res.sendStatus(403);
   }
 };
-
+app.get("/", function (req, res) {
+  res.send("Welecome to the api");
+});
 app.use("/api", verifyToken, apiRouter);
 app.use("/users", usersRouter);
 
